@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>RMOS - Restaurant Menu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <h1>🍽️ RMOS</h1>
+                <span class="badge">Sprint 1 Prototype</span>
+            </div>
+            <div class="table-selector">
+                <label for="table-number">Table:</label>
+                <select id="table-number" class="table-select">
+                    <option value="1">Table 1</option>
+                    <option value="2">Table 2</option>
+                    <option value="3">Table 3</option>
+                    <option value="4">Table 4</option>
+                    <option value="5">Table 5</option>
+                    <option value="6">Table 6</option>
+                </select>
+            </div>
+            <div class="connection-status" id="connection-status">
+                <span class="status-indicator"></span>
+                <span id="status-text">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Menu Categories -->
+            <nav class="category-nav" id="category-nav">
+                <!-- Categories loaded dynamically -->
+            </nav>
+
+            <!-- Menu Items Grid -->
+            <section class="menu-section">
+                <h2 id="current-category">All Items</h2>
+                <div class="menu-grid" id="menu-grid">
+                    <!-- Menu items loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Order Sidebar -->
+            <aside class="order-sidebar" id="order-sidebar">
+                <div class="order-header">
+                    <h3>Current Order</h3>
+                    <span class="table-badge" id="order-table">Table 1</span>
+                </div>
+                
+                <div class="order-items" id="order-items">
+                    <div class="empty-order">
+                        <p>Your order is empty</p>
+                        <small>Tap items on the menu to add</small>
+                    </div>
+                </div>
+                
+                <div class="order-total">
+                    <span>Total:</span>
+                    <span class="total-amount" id="order-total">$0.00</span>
+                </div>
+                
+                <div class="order-actions">
+                    <button class="btn btn-secondary" id="clear-order" disabled>Clear</button>
+                    <button class="btn btn-primary" id="place-order" disabled>Place Order</button>
+                </div>
+                
+                <div class="waiter-section">
+                    <button class="btn btn-waiter" id="call-waiter">🔔 Call Waiter</button>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Order Confirmation Modal -->
+        <div class="modal" id="order-modal">
+            <div class="modal-content">
+                <h3>Order Confirmed!</h3>
+                <p>Your order has been sent to the kitchen.</p>
+                <div class="order-summary" id="order-summary"></div>
+                <button class="btn btn-primary" id="close-modal">Continue</button>
+            </div>
+        </div>
+
+        <!-- Waiter Call Modal -->
+        <div class="modal" id="waiter-modal">
+            <div class="modal-content">
+                <h3>Waiter Called</h3>
+                <p>A waiter has been notified. They'll be with you shortly.</p>
+                <button class="btn btn-primary" id="close-waiter-modal">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

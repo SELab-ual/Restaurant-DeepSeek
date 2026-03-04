@@ -1,0 +1,57 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Appetizers",
+      "description": "Start your meal",
+      "display_order": 1
+    },
+    {
+      "id": 2,
+      "name": "Main Courses",
+      "description": "Signature dishes",
+      "display_order": 2
+    },
+    {
+      "id": 3,
+      "name": "Desserts",
+      "description": "Sweet endings",
+      "display_order": 3
+    },
+    {
+      "id": 4,
+      "name": "Beverages",
+      "description": "Drinks & refreshments",
+      "display_order": 4
+    }
+  ],
+  "menu_items": [
+    {
+      "id": 1,
+      "name": "Bruschetta",
+      "description": "Toasted bread with tomatoes, garlic, and basil",
+      "price": 8.99,
+      "category_id": 1,
+      "is_available": true,
+      "preparation_time": 10
+    },
+    {
+      "id": 2,
+      "name": "Calamari",
+      "description": "Fried squid with marinara sauce",
+      "price": 12.99,
+      "category_id": 1,
+      "is_available": true,
+      "preparation_time": 15
+    },
+    {
+      "id": 3,
+      "name": "Grilled Salmon",
+      "description": "Fresh salmon with lemon butter sauce",
+      "price": 24.99,
+      "category_id": 2,
+      "is_available": true,
+      "preparation_time": 20
+    }
+  ]
+}

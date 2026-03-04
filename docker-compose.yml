@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: rmos-db
+    environment:
+      POSTGRES_USER: rmos_user
+      POSTGRES_PASSWORD: rmos_password
+      POSTGRES_DB: rmos_database
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rmos_user -d rmos_database"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - rmos-network
+
+  # FastAPI Backend
+  backend:
+    build: ./backend
+    container_name: rmos-backend
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://rmos_user:rmos_password@db:5432/rmos_database
+      - SECRET_KEY=rmos-sprint1-dev-key-2026
+      - DEBUG=true
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /app/__pycache__
+    networks:
+      - rmos-network
+
+  # Nginx Frontend
+  frontend:
+    build: ./frontend
+    container_name: rmos-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - rmos-network
+
+volumes:
+  pgdata:
+    name: rmos-pgdata
+
+networks:
+  rmos-network:
+    name: rmos-network
+    driver: bridge
